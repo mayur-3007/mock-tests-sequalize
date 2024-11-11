@@ -15,7 +15,7 @@ exports.createTest = async (req, res) => {
 
     await TestQuestion.bulkCreate(associations)
 
-    await deleteByPattern('tests_page_*')
+    await deleteByPattern('tests_page_*') //delete redis cache if exists
 
     res.status(201).json({
       testId: test.id,

@@ -17,7 +17,7 @@ const Question = sequelize.define('Question', {
   },
   options: {
     type: DataTypes.JSON,
-    allowNull: true, // For MCQ and Match questions
+    allowNull: true,
   },
   answer: {
     type: DataTypes.JSON,

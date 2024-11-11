@@ -12,7 +12,7 @@ exports.createQuestion = async (req, res) => {
       options: JSON.stringify(options),
       answer: JSON.stringify(answer),
     })
-    await deleteByPattern('questions_page_*')
+    await deleteByPattern('questions_page_*') //delete redis cache if exists
     res.status(201).json({ id: question.id })
   } catch (error) {
     console.error(error)
@@ -36,7 +36,7 @@ exports.createMultipleQuestions = async (req, res) => {
         return { id: createdQuestion.id, ...question }
       })
     )
-    await deleteByPattern('questions_page_*')
+    await deleteByPattern('questions_page_*') //delete redis cache if exists
     res.status(201).json(createdQuestions)
   } catch (error) {
     console.error(error)

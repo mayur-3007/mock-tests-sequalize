@@ -7,13 +7,13 @@
 	},
 	"item": [
 		{
-			"name": "User",
+			"name": "User/Signup",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Ronoroa Zoro\",\n    \"email\": \"ronoroa@gmail.com\"\n}",
+					"raw": "{\n    \"name\": \"Ronoroa Zoro\",\n    \"email\": \"ronoroa@gmail.com\",\n    \"password\": \"password@123\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -30,6 +30,35 @@
 					"path": [
 						"users",
 						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"ronoroa@gmail.com\",\n    \"password\": \"password@123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"login"
 					]
 				}
 			},
@@ -77,7 +106,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"John Doe\"\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -85,7 +114,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/users?page=1&limit=2",
+					"raw": "http://localhost:3000/users?page=1&limit=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -101,7 +130,7 @@
 						},
 						{
 							"key": "limit",
-							"value": "2"
+							"value": "1"
 						}
 					]
 				}
@@ -112,10 +141,16 @@
 			"name": "Question",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"type\": \"MCQ\",\n    \"content\": \"what is 3+5\",\n    \"options\": [\n        \"4\",\n        \"6\",\n        \"8\",\n        \"10\"\n    ],\n    \"answer\": \"8\"\n}\n\n// {\n//   \"type\": \"match\",\n//   \"content\": \"Match the following items\",\n//   \"options\": {\"A\": \"Apple\", \"B\": \"Banana\", \"1\": \"Fruit\", \"2\": \"Vegetable\"},\n//   \"answer\": {\"A\": \"1\", \"B\": \"2\"}\n// }\n",
+					"raw": "{\n    \"type\": \"MCQ\",\n    \"content\": \"what is 5+5\",\n    \"options\": [\n        \"4\",\n        \"6\",\n        \"8\",\n        \"10\"\n    ],\n    \"answer\": \"8\"\n}\n\n// {\n//   \"type\": \"match\",\n//   \"content\": \"Match the following items\",\n//   \"options\": {\"A\": \"Apple\", \"B\": \"Banana\", \"1\": \"Fruit\", \"2\": \"Vegetable\"},\n//   \"answer\": {\"A\": \"1\", \"B\": \"2\"}\n// }\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -141,10 +176,16 @@
 			"name": "Mutiple Question",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n    // {\n    //     \"type\": \"MCQ\",\n    //     \"content\": \"What is 2 * 3?\",\n    //     \"options\": [\n    //         \"2\",\n    //         \"4\",\n    //         \"6\"\n    //     ],\n    //     \"answer\": \"6\"\n    // },\n    {\n        \"type\": \"fill-in-the-blank\",\n        \"content\": \"Japan is famous for ___\",\n        \"options\": [],\n        \"answer\": \"Anime\"\n    }\n]",
+					"raw": "[\n    {\n        \"type\": \"MCQ\",\n        \"content\": \"What is 2 * 3?\",\n        \"options\": [\n            \"2\",\n            \"4\",\n            \"6\"\n        ],\n        \"answer\": \"6\"\n    },\n    {\n        \"type\": \"fill-in-the-blank\",\n        \"content\": \"Japan is famous for ___\",\n        \"options\": [],\n        \"answer\": \"Anime\"\n    }\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -173,7 +214,13 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"type\": \"MCQ\",\n    \"content\": \"What is 2 + 2?\",\n    \"options\": [\n        \"2\",\n        \"3\",\n        \"4\"\n    ],\n    \"answer\": \"4\"\n}",
@@ -184,7 +231,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/questions/3",
+					"raw": "http://localhost:3000/questions/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -192,7 +239,7 @@
 					"port": "3000",
 					"path": [
 						"questions",
-						"3"
+						"2"
 					]
 				}
 			},
@@ -205,7 +252,13 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "",
@@ -216,7 +269,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/questions?page=2&limit=2",
+					"raw": "http://localhost:3000/questions?page=1&limit=2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -228,7 +281,7 @@
 					"query": [
 						{
 							"key": "page",
-							"value": "2"
+							"value": "1"
 						},
 						{
 							"key": "limit",
@@ -243,10 +296,16 @@
 			"name": "Create Test",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\": \"Geography test\",\n  \"questionIds\": [4, 5, 8, 9]\n}\n",
+					"raw": "{\n  \"name\": \"Geography test\",\n  \"questionIds\": [1, 2, 3]\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -275,7 +334,13 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n  \"name\": \"Math Test\",\n  \"questionIds\": [1, 2, 3, 4]\n}\n",
@@ -307,7 +372,13 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n  \"name\": \"Math Test\",\n  \"questionIds\": [1, 2, 3, 4]\n}\n",
@@ -345,10 +416,16 @@
 			"name": "Submit Test",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userId\": 1,\n    \"testId\": 1,\n    \"answers\": { //questionId : answer\n        \"1\": \"4\",\n        // \"4\": \"paris\",\n        \"3\": \"4\",\n        // ,\n        \"2\": \"{\\\"A\\\": \\\"1\\\", \\\"B\\\": \\\"2\\\"}\"\n\n    }\n}",
+					"raw": "{\n    \"userId\": 1,\n    \"testId\": 1,\n    \"answers\": { //questionId : answer\n        \"1\": \"8\",\n        \"3\": \"anime\",\n        \"2\": \"4\"\n\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -377,7 +454,13 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{bearer_token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"userId\": 2,\n    \"testId\": 2,\n    \"answers\": {\n        \"1\": \"2\",\n        \"2\": \"4\",\n        \"3\": \"Paris\",\n        \"4\": \"{\\\"A\\\": \\\"1\\\", \\\"B\\\": \\\"2\\\"}\"\n\n    }\n}",
@@ -388,7 +471,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/results/user/2/test/2",
+					"raw": "http://localhost:3000/results/user/1/test/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -397,9 +480,9 @@
 					"path": [
 						"results",
 						"user",
-						"2",
+						"1",
 						"test",
-						"2"
+						"1"
 					]
 				}
 			},

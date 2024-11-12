@@ -5,5 +5,6 @@ module.exports = {
     database: 'mock_test_seq',
     host: 'localhost',
     dialect: 'mysql',
+    secret: 'your_secret_key',
   },
 }
